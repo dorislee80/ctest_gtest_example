@@ -18,3 +18,27 @@ To register a test, add the following lines into CMakeLists.txt
 add_executable() build an executable called vector_test. add_test() registers a test called "vector" with ctest. Its corresponding command is "vector_test".
 
 ## gtest 
+gtest is a unit testing framework developed by Google. 
+
+To install gtest on Ubunto, please execute the following code
+
+> sudo apt-get install libgtest-dev
+
+Then you need to compile the libary (the command above just install the source code)
+
+> cd /usr/src/gtest
+> mkdir mybuild
+> cd mybuild
+> cmake ..
+> make 
+> make install
+
+See code tests/gtest_map.cpp for gtest example.
+
+To register the test with ctest, add the following code into CMakeLists.txt
+
+> add_executable(map_test "tests/gtest_map.cpp")
+> target_link_libraries(map_test "-lgtest -lgtest_main -pthread")
+> add_test(NAME map COMMAND map_test)
+
+The executable using gtest has to be linked with the libraries gtest, gtest_main and pthread that are specified in target_link_libraries().
