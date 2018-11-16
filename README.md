@@ -20,7 +20,7 @@ add_executable() build an executable called vector_test. add_test() registers a 
 ## gtest 
 gtest is a unit testing framework developed by Google. 
 
-To install gtest on Ubunto, please execute the following code
+To install gtest on Ubunto, please execute the following commands
 
 > sudo apt-get install libgtest-dev
 
@@ -42,3 +42,29 @@ To register the test with ctest, add the following code into CMakeLists.txt
 > add_test(NAME map COMMAND map_test)
 
 The executable using gtest has to be linked with the libraries gtest, gtest_main and pthread that are specified in target_link_libraries().
+
+# gmock
+gmock is a mocking framewwork acompanying with gtest.
+
+To install gmock on Ubunto, please execute the following commands
+
+> sudo apt-get install google-mock
+
+Then you need to compilte the library (the command above just installs the source code)
+
+> cd /usr/src/gmock
+> mkdir mybuild
+> cd mybuild
+> cmake ..
+> make
+> make install
+
+See code tests/gmock_my_database_app.cpp, db_connection.h, my_database_app.h for gmock example.
+
+To register the test with ctest, add the following code into CMakeLists.txt
+
+> add_executable(map_test "tests/gtest_map.cpp")
+> target_link_libraries(map_test "-lgtest -lgtest_main -pthread -lgmock")
+> add_test(NAME map COMMAND map_test)
+
+The executable using gmock has to be linked with the libraries gtest, gtest_main, gmock and pthread that are specified in target_link_libraries().
