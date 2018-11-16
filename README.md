@@ -68,3 +68,6 @@ To register the test with ctest, add the following code into CMakeLists.txt
 > add_test(NAME map COMMAND map_test)
 
 The executable using gmock has to be linked with the libraries gtest, gtest_main, gmock and pthread that are specified in target_link_libraries().
+
+# References
+https://www.youtube.com/watch?v=nbFXI9SDfbk&list=PL_dsdStdDXbo-zApdWB5XiF2aWpsqzV55
